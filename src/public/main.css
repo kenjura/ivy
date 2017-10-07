@@ -1,0 +1,94 @@
+* {
+  font-family: Open Sans, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+body {
+  background: #eee;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #6882a1;
+  color: white;
+  padding: 20px;
+}
+header > a {
+  border-left: 1px solid white;
+  margin-left: 10px;
+  padding-left: 10px;
+}
+header > a:first-of-type {
+  border-left: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.page {
+  background-color: white;
+  box-shadow: 0 0 8px 2px rgba(0,0,0,0.25);
+  margin: 20px;
+  padding: 20px;
+}
+
+.forum {
+  background-color: #e1e9f9;
+  color: #444;
+  display: block;
+  padding: 20px;
+  margin-bottom: 10px;
+  text-decoration: none;
+}
+.forum:hover {
+  color: #448;
+}
+.forum[depth="0"] { padding-left: 20px; }
+.forum[depth="1"] { padding-left: 40px; }
+.forum[depth="2"] { padding-left: 60px; }
+.forum[depth="3"] { padding-left: 80px; }
+.forum[depth="4"] { padding-left: 100px; }
+.forum aside {
+  float: right;
+  font-size: 75%;
+}
+
+.post {
+  background-color: hsl(213, 23%, 92%);
+  color: hsl(213, 23%, 32%);
+  display: block;
+  padding: 20px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s, color 0.3s;
+}
+a.post:hover {
+  background-color: hsl(213, 23%, 52%);
+  color: white;
+}
+.post aside {
+  float: right;
+  font-size: 75%;
+}
+.post a {
+  color: #448;
+  text-decoration: none;
+}
+.post a:hover {
+  color: #44B;
+}
+
+.thread {
+}
+.thread .headline {
+  background-color: #6882a1;
+  color: white;
+  margin: -20px -20px 0 -20px;
+  padding: 20px;
+}
+.thread .post {
+  background-color: hsl(213, 13%, 92%);
+}
