@@ -1,6 +1,3 @@
-Wish list:
-* Native app
-* Can use local files or Dropbox
-* Sidebar
-** Each file is its own folder? bleh
-** Maybe store files as html, or some pseudo-html templating language
+What this is truly meant to be is a node-powered forum which uses plain text files on a file system instead of a database. Why? Because FUCK DATABASES.
+
+Work in progress.

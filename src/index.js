@@ -1,9 +1,9 @@
-require('dotenv').config();
+require('dotenv').config({ path:'/etc/ivy.env' });
 
 const chalk        = require('chalk');
 const express      = require('express');
 const forumCtrl    = require('./controllers/forumCtrl');
-const htmlRenderer = require('util/htmlRenderer');
+const htmlRenderer = require('./util/htmlRenderer');
 const logger       = require('morgan');
 const path         = require('path');
 const postCtrl    = require('./controllers/postCtrl');

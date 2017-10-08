@@ -1,0 +1,4 @@
+{
+	"name": "ivy",
+	"script": "src/index.js",
+}
