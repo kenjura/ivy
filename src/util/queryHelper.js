@@ -9,6 +9,7 @@ function execute(query) {
       user: process.env.MYSQL_USER,
       password: process.env.MYSQL_PASS,
       database: process.env.MYSQL_DB,
+      flags: 'PLUGIN_AUTH',
     });
 
     connection.connect();

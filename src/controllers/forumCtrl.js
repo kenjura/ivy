@@ -2,6 +2,7 @@ const queryHelper = require('../util/queryHelper');
 const _       = require('lodash');
 
 module.exports.getForum = getForum;
+module.exports.getForums = getForums;
 module.exports.getForumIndex = getForumIndex;
 
 function getForum(fid) {
@@ -13,17 +14,21 @@ function getForum(fid) {
   });
 }
 
-function getForumIndex() {
+function getForums() {
   return new Promise((resolve, reject) => {
     const query = `SELECT * FROM mybb_forums ORDER BY parentlist, disporder`;
 
     queryHelper.execute(query)
       .then(data => {
         const forums = data.map(forum => _.extend(forum, { depth:forum.parentlist.replace(/[^,]/g,'').length }));
-        resolve(renderForums(forums));
+        resolve(forums);
       })
       .catch(reject);
   });
+}
+async function getForumIndex() {
+  const forums = await getForums();
+  return renderForums(forums);
 }
 
 function getThreads() {

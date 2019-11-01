@@ -3,8 +3,7 @@ const queryHelper  = require('../util/queryHelper');
 const _            = require('lodash');
 const wikiParser   = require('../util/wikiParser');
 
-module.exports.getThread    = getThread;
-module.exports.getPostIndex = getPostIndex;
+module.exports = { getAllThreads, getThread, getPosts, getPostIndex };
 
 function getPostIndex(fid) {
   return new Promise((resolve, reject) => {
@@ -13,6 +12,29 @@ function getPostIndex(fid) {
       .then(data => resolve(renderPostIndex(data, fid)))
       .catch(reject);
   });
+}
+
+async function getPosts({ fid, tid }={}) {
+  const where = (fid || tid) ? `WHERE ${fid ? `fid = '${fid.replace(/'/,'')}'` : ''} ${tid ? `tid = '${tid.replace(/'/,'')}'` : ''}` : '';
+  const query = `SELECT * FROM mybb_posts ${where}`;
+  const data = await queryHelper.execute(query);
+  return data;
+}
+
+async function getAllThreads() {
+  const query = `SELECT * FROM mybb_posts`;
+  const posts = await queryHelper.execute(query);
+  const grouped = posts.reduce((arr, post) => {
+    const { tid, fid, subject } = post;
+    let el = arr.find(e => e.fid === fid && e.tid === tid);
+    if (!el) {
+      arr.push({ fid, tid, subject, posts:[] });
+      el = arr[arr.length-1];
+    }
+    el.posts.push(post);
+    return arr;
+  }, []);
+  return grouped;
 }
 
 function getThread(fid, tid) {
